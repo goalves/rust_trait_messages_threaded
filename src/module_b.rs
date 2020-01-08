@@ -16,8 +16,8 @@ fn run(sender: crossbeam_channel::Sender<Box<dyn Message>>) {
 
     loop {
         crossbeam_channel::select! {
-            recv(periodic_ticks) -> _ => {sender.send(Box::new(FirstM {})).unwrap();}
-            recv(periodic_ticks_2) -> _ => {sender.send(Box::new(SecondM {})).unwrap();}
+            recv(periodic_ticks) -> _ => { sender.send(Box::new(FirstM {})).unwrap(); }
+            recv(periodic_ticks_2) -> _ => { sender.send(Box::new(SecondM {})).unwrap(); }
             default(std::time::Duration::from_millis(100)) => (),
         };
     }

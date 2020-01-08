@@ -40,14 +40,8 @@ fn run(receiver: crossbeam_channel::Receiver<Box<dyn Message>>) {
 
     loop {
         crossbeam_channel::select! {
-            recv(periodic_ticks) -> _ => {
-                println!("tick A");
-                ()
-            }
-            recv(receiver) -> result => {
-                result.as_ref().unwrap().process();
-                ()
-            }
+            recv(periodic_ticks) -> _ => { println!("tick A"); }
+            recv(receiver) -> result => { result.as_ref().unwrap().process(); }
             default(std::time::Duration::from_millis(100)) => (),
         };
     }
