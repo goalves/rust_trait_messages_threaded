@@ -27,10 +27,7 @@ pub fn new() -> (
     crossbeam_channel::Sender<Box<dyn Message>>,
 ) {
     let (sender, receiver) = crossbeam_channel::unbounded();
-    let thread_handle = thread::Builder::new()
-        .name("A THREAD".into())
-        .spawn(move || run(receiver))
-        .unwrap();
+    let thread_handle = thread::Builder::new().spawn(move || run(receiver)).unwrap();
 
     (thread_handle, sender)
 }

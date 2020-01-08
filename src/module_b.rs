@@ -2,10 +2,7 @@ use crate::module_a::{FirstM, Message, SecondM};
 use std::thread;
 
 pub fn new(a_sender: crossbeam_channel::Sender<Box<dyn Message>>) -> thread::JoinHandle<()> {
-    let thread_handle = thread::Builder::new()
-        .name("A THREAD".into())
-        .spawn(move || run(a_sender))
-        .unwrap();
+    let thread_handle = thread::Builder::new().spawn(move || run(a_sender)).unwrap();
 
     thread_handle
 }
