@@ -1,0 +1,8 @@
+[package]
+name = "rust_trait_messages_threaded"
+version = "0.1.0"
+authors = ["Gabriel Alves <g04lves@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+crossbeam-channel = "0.3.9"
